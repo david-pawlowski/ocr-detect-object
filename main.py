@@ -42,6 +42,8 @@ def main():
 		thresh = cv2.threshold(frameDelta, 25, 255, cv2.THRESH_BINARY)[1]
 		# dilate the thresholded image to fill in holes, then find contours
 		# on thresholded image
+		all_zeros = not np.any(thresh)
+		print(all_zeros)
 		thresh = cv2.dilate(thresh, None, iterations=2)
 		cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
 			cv2.CHAIN_APPROX_SIMPLE)
